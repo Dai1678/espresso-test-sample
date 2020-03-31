@@ -64,7 +64,7 @@ class PlantDetailFragment : Fragment() {
             }
         }
 
-        plantDetailViewModel.plant.observe(this, Observer { plant ->
+        plantDetailViewModel.plant.observe(viewLifecycleOwner, Observer { plant ->
             shareText = if (plant == null) {
                 ""
             } else {
@@ -77,15 +77,15 @@ class PlantDetailFragment : Fragment() {
         return binding.root
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        inflater?.inflate(R.menu.menu_plant_detail, menu)
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_plant_detail, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when (item?.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
             R.id.action_share -> {
-                val shareIntent = ShareCompat.IntentBuilder.from(activity)
+                val shareIntent = ShareCompat.IntentBuilder.from(requireActivity())
                     .setText(shareText)
                     .setType("text/plain")
                     .createChooserIntent()

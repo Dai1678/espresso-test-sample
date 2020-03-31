@@ -21,7 +21,10 @@ import android.os.Bundle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.google.samples.apps.sunflower.databinding.ActivityGardenBinding
@@ -37,19 +40,14 @@ class GardenActivity : AppCompatActivity() {
                 R.layout.activity_garden)
         drawerLayout = binding.drawerLayout
 
-        val navController = Navigation.findNavController(this, R.id.garden_nav_fragment)
+        val navController = findNavController(R.id.garden_nav_fragment)
+        val appBarConfig = AppBarConfiguration(navController.graph, drawerLayout)
 
-        // Set up ActionBar
-        setSupportActionBar(binding.toolbar)
-        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
+        // Set up Toolbar
+        binding.toolbar.setupWithNavController(navController, appBarConfig)
 
         // Set up navigation menu
         binding.navigationView.setupWithNavController(navController)
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        return NavigationUI.navigateUp(drawerLayout,
-                Navigation.findNavController(this, R.id.garden_nav_fragment))
     }
 
     override fun onBackPressed() {
