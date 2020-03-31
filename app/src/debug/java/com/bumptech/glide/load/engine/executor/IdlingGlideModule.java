@@ -23,6 +23,8 @@ import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.module.AppGlideModule;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.concurrent.Executors;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.TimeUnit;
@@ -32,7 +34,7 @@ public class IdlingGlideModule extends AppGlideModule {
 
     @SuppressLint("VisibleForTests")
     @Override
-    public void applyOptions(Context context, GlideBuilder builder) {
+    public void applyOptions(@NotNull Context context, GlideBuilder builder) {
         builder.setDiskCacheExecutor(new GlideExecutor(
                 new IdlingThreadPoolExecutor("GlideDiskCacheExecutor",
                         1,
