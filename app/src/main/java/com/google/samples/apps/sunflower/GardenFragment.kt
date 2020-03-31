@@ -16,15 +16,15 @@
 
 package com.google.samples.apps.sunflower
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.google.samples.apps.sunflower.adapters.GardenPlantingAdapter
 import com.google.samples.apps.sunflower.utilities.InjectorUtils
 import com.google.samples.apps.sunflower.viewmodels.GardenPlantingListViewModel
@@ -32,10 +32,9 @@ import com.google.samples.apps.sunflower.viewmodels.GardenPlantingListViewModel
 class GardenFragment : Fragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_garden, container, false)
         val adapter = GardenPlantingAdapter(view.context)
         view.findViewById<RecyclerView>(R.id.garden_list).adapter = adapter
@@ -45,7 +44,7 @@ class GardenFragment : Fragment() {
 
     private fun subscribeUi(adapter: GardenPlantingAdapter) {
         val factory = InjectorUtils.provideGardenPlantingListViewModelFactory(requireContext())
-        val viewModel = ViewModelProviders.of(this, factory)
+        val viewModel = ViewModelProvider(this, factory)
                 .get(GardenPlantingListViewModel::class.java)
 
         viewModel.gardenPlantings.observe(viewLifecycleOwner, Observer { plantings ->
