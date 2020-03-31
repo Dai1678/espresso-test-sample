@@ -16,8 +16,8 @@
 
 package com.google.samples.apps.sunflower.adapters
 
-import android.databinding.BindingAdapter
-import android.support.design.widget.FloatingActionButton
+import androidx.databinding.BindingAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import android.text.SpannableStringBuilder
 import android.widget.ImageView
 import android.widget.TextView

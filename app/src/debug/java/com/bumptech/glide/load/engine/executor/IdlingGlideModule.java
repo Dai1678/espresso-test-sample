@@ -18,7 +18,7 @@ package com.bumptech.glide.load.engine.executor;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.test.espresso.idling.concurrent.IdlingThreadPoolExecutor;
+import androidx.test.espresso.idling.concurrent.IdlingThreadPoolExecutor;
 import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.module.AppGlideModule;
